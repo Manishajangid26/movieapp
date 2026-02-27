@@ -9,3 +9,7 @@ database_file = "sqlite:///movie.db"
 
 engine = create_engine(database_file)
 SQLModel.metadata.create_all(engine)
+
+def get_db_seccion():
+    with Session(engine) as db:
+        yield db

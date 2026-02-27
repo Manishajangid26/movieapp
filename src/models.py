@@ -1,9 +1,10 @@
 from sqlmodel import SQLModel , Field
+from typing import Optional
 
 
 
 class Movies(SQLModel , table = True):
-    id:int = Field(primary_key = True, nullable=False)
+    id:Optional[int] = Field(primary_key = True, nullable=False)
     name: str
     release_date: str
     cast: str
@@ -11,10 +12,4 @@ class Movies(SQLModel , table = True):
     description: str
 
 
-class Post(SQLModel ):
-    name: str
-    release_date: str
-    cast: str
-    rating: float
-    description: str
     
