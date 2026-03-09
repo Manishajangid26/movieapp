@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from sqlmodel import Session, select
+from sqlmodel import Session
 from src import get_db_seccion
 from src.models import Movies
 from pydantic import BaseModel
@@ -34,11 +34,9 @@ def create_movie(movie: MovieCreate, db: Session = Depends(get_db_seccion)):
 
     return new_movie
 
-
 @movie_router.get("/show_movie")
 def get_movies(db: Session = Depends(get_db_seccion)):
 
-    statement = select(Movies)
-    movies = db.exec(statement).all()
+    movies = db.query(Movies).all()
 
     return movies
